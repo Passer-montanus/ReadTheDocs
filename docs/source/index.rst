@@ -11,5 +11,6 @@ ValBal-Trajectory documentation
    :caption: Contents:
 
    about
+   2025/2025_index
    help
 
