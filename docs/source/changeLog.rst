@@ -13,3 +13,10 @@
 #############################
 Change List
 #############################
+
+ .. toctree::
+    :maxdepth: 2
+    :caption: Version History:
+
+    changelog/v0_0_1
+    changelog/v0_0_2

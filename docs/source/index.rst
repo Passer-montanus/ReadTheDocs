@@ -3,8 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+##################################
 ValBal-Trajectory documentation
-===============================
+##################################
 
 .. note::
    本文档是 ValBal-Trajectory 的介绍性文档，用于内部讨论和关键模块的详细阐述
@@ -23,7 +24,7 @@ ValBal-Trajectory 是一个用于实现高空气球轨迹规划的项目，该�
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
-   :hidden:
+   
 
    about
    getting_started
@@ -32,7 +33,7 @@ ValBal-Trajectory 是一个用于实现高空气球轨迹规划的项目，该�
    trajectory_planning
    balloon_simulation
    API
-   changeLog
+   changelog
    citing
 
 Indices and tables
