@@ -13,3 +13,9 @@
 #############################
 Citing us
 #############################
+
+
+If ValBal-Trajectory played an important role in your research, then please cite the following publication
+where ValBal-Trajectory was first introduced:
+
+* Add IEEE link when published
