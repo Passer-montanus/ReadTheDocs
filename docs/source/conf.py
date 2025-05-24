@@ -1,10 +1,6 @@
 # Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 # -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'ValBal-Trajectory'
 copyright = '2025, LittledT'
@@ -12,7 +8,6 @@ author = 'LittledT'
 release = 'v0.0.1'
 
 # -- General configuration ---------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
     'myst_parser',
@@ -41,6 +36,7 @@ language = 'zh_CN'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
+
 html_theme_options = {
     'analytics_anonymize_ip': False,
     'logo_only': True,
