@@ -1,0 +1,157 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About the ValBal-Trajectory &mdash; ValBal-Trajectory v0.0.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=7cf98a4c"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/translations.js?v=beaddf03"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="关于此文档" href="#" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="Getting Started" href="getting_started.html" />
+    <link rel="prev" title="ValBal-Trajectory documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ValBal-Trajectory
+              <img src="_static/GIPP.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">About the ValBal-Trajectory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">背景及意义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">主动高度调节</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">定点通过任务路径规划</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atmos_tool.html">Atmospheric Tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="altitude_control.html">Altitude Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trajectory_planning.html">Planning and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="balloon_simulation.html">Simulatoin and HIL Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changeLog.html">Change List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing us</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ValBal-Trajectory</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">About the ValBal-Trajectory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/about.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="about-the-valbal-trajectory">
+<h1>About the ValBal-Trajectory<a class="headerlink" href="#about-the-valbal-trajectory" title="Link to this heading"></a></h1>
+<p>本页面主要介绍关于高空气球的轨迹规划相关背景，目的是入门介绍和快速了解。</p>
+<section id="id1">
+<h2>背景及意义<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>随着航空航天技术的快速发展，浮空器近年来逐渐成为环境监测、通信中继、气象探测、灾害评估以及科学实验等任务的重要载体，根据其有无动力分为两类。
+动力浮空器通常指飞艇，无动力浮空器包括自由气球和系留气球，如下图所示的乳胶气球、高分子气球、低空系留气球为常见的小型浮空器。</p>
+<img alt="_images/Intro.png" src="_images/Intro.png" />
+<p>其中乳胶气球以结构简单、部署灵活、成本低廉，观测区域范围大的优势受到科研院所的广泛关注。
+然而传统的乳胶气球的应用模式多为一次性升空、被动漂浮，缺乏主动高度控制能力，难以满足指定区域长时间驻空观测的任务需求。
+这种无法自主调整飞行高度的局限性，极大制约了其在实际任务中的应用范围与性能表现。
+因此，研究并实现浮空器的主动高度调节，并进一步结合高度调控策略开展定点长时观测的飞行规划，具有重要的理论意义和现实应用价值。</p>
+</section>
+<section id="id2">
+<h2>主动高度调节<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>乳胶气球的高度控制本质上取决于对气球净浮力的调节。气球在高空中的垂直运动受到多种力的共同作用，主要包括气球所受的浮力、气动阻力以及系统总重力。
+其中，气球总质量随着压舱物投放和气体排放而动态变化。气球的几何模型简化为球形，半径随内部气体的体积变化而变化，同时内部气体体积受气压和环境温度影响，需进一步建立热力学平衡方程进行精确建模。
+此外，乳胶气球高度控制的执行机构模型也需要建立，主要包括：通过排气阀门控制气球内部气体排放速率，以减小浮力的排气机构模型；
+通过压舱物投放装置控制压舱物释放速率，以增加净浮力的压舱物抛投模型。排气阀门和压舱物抛投机构的动态模型参数通过地面试验和历史飞行数据进行系统辨识。</p>
+</section>
+<section id="id3">
+<h2>定点通过任务路径规划<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>乳胶气球实现定点通过任务的关键在于精确、高效的轨迹规划与合理的初始发射配置。由于乳胶气球平台本质上为欠驱动系统，其水平运动主要依赖于高度调控并利用不同高度层的风场差异来实现。
+因此轨迹规划问题可描述为：在给定预测风场数据条件下，通过动态调节气球高度，利用不同高度层风速风向的差异，使气球的水平运动轨迹经过预定目标点或目标区域，同时满足执行机构约束和其他任务约束（如飞行时间、能耗限制）。
+具体而言，轨迹规划问题可表达为以下优化问题：</p>
+<ul class="simple">
+<li><p>状态变量：经度、纬度、高度作为气球的三维位置状态，水平速度取决于对应位置高度的风场信息，垂直速度由高度控制器决定。</p></li>
+<li><p>控制变量：通过排气和抛物实现对于气球净浮力的调节，进而影响气球的加速度、速度和高度。</p></li>
+<li><p>约束条件：选择气球的高度活动区间，执行机构和初始发射区域作为约束条件。</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="index.html" class="btn btn-neutral float-left" title="ValBal-Trajectory documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, LittledT。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

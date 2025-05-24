@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Altitude Control &mdash; ValBal-Trajectory v0.0.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=7cf98a4c"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/translations.js?v=beaddf03"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="关于此文档" href="about.html" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="Planning and Optimization" href="trajectory_planning.html" />
+    <link rel="prev" title="Atmospheric Tool" href="atmos_tool.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ValBal-Trajectory
+              <img src="_static/GIPP.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About the ValBal-Trajectory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atmos_tool.html">Atmospheric Tool</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Altitude Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">高度调节机制</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sounding-balloons">探空气球（Sounding Balloons）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zero-pressure-balloons">零压气球（Zero-Pressure Balloons）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#superpressure-balloons">超压气球（Superpressure Balloons）</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">高度调节控制器</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">传统高度控制器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">智能高度控制器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trajectory_planning.html">Planning and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="balloon_simulation.html">Simulatoin and HIL Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changeLog.html">Change List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing us</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ValBal-Trajectory</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Altitude Control</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/altitude_control.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="altitude-control">
+<h1>Altitude Control<a class="headerlink" href="#altitude-control" title="Link to this heading"></a></h1>
+<p>对于无动力高空气球，其飞行高度主要受浮力、自身重力以及环境风场等因素的综合影响。
+其中，浮力与气球体积及大气参数（如空气密度、温度、压力）密切相关，而自身重力则可通过主动调节载荷质量实现控制，如抛投压舱物或调节气球内部气体质量（例如压缩空气或释放氦气）。
+基于上述物理机制，可以构建一个涵盖热力学与环境动力学的气球运动模型，从而实现基于模型的高度调节（Model-Based Altitude Regulation）。
+该方法通过对气球所处环境（包括温度、气压、风速、风向）以及气球系统自身状态（如浮力变化率、质量变化、体积变化）的建模，实现对浮力与自重的实时调节策略，进而控制气球在垂直方向上的动态行为。</p>
+<section id="id1">
+<h2>高度调节机制<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>基于上述高度调节原理，不同类型气球采用了差异化的高度调节机制</p>
+<section id="sounding-balloons">
+<h3>探空气球（Sounding Balloons）<a class="headerlink" href="#sounding-balloons" title="Link to this heading"></a></h3>
+<p>通常采用一次性上升策略，不具备主动的高度调节能力，其飞行轨迹主要依赖于初始充气量、气球材料的强度和外部环境条件（如气温、气压等）。
+随着气球升空，气体膨胀使气球体积增大，最终在达到其材料强度极限时破裂，释放携带的探测载荷。
+尽管探空气球本身缺乏实时调节能力，但通过对初始充气量进行精确计算，可以使其在特定高度驻留一段时间。
+然而，该方法对充气精度要求极高，且高度稳定性较差，难以应对突发环境扰动。
+此外，为了克服这种“单程式”控制的局限，一些研究尝试引入有限的排气与压舱物抛投机制，借助有限资源实现一定程度上的高度调节，使探空气球具备初步的自调节能力。</p>
+</section>
+<section id="zero-pressure-balloons">
+<h3>零压气球（Zero-Pressure Balloons）<a class="headerlink" href="#zero-pressure-balloons" title="Link to this heading"></a></h3>
+<p>零压气球拥有与外界连通的顶部排气孔，其内部压力基本与环境平衡。
+在昼夜温差显著的高空环境中，气体受热胀冷缩影响显著，气球升沉频繁，因此其高度调节机制主要包括主动与被动两类方式。
+主动手段主要依靠压舱物的抛投，以增加净浮力实现上升，是ZPB最常见的高度控制手段；
+而被动沉降则来源于气体在夜间冷却后体积缩小造成浮力减小，或自然放气过程中的浮力损耗。
+为了优化调节策略，通常需要结合高度建模与飞行仿真，提前规划压舱物使用方案与调节时机，以尽量维持在目标高度附近长期稳定漂浮。</p>
+</section>
+<section id="superpressure-balloons">
+<h3>超压气球（Superpressure Balloons）<a class="headerlink" href="#superpressure-balloons" title="Link to this heading"></a></h3>
+<p>超压气球则采用封闭结构设计，气体不可自由逸散，体积保持恒定，具备更强的浮力稳定性。
+该类气球通过维持气体内部压强高于外部大气压，实现长时间驻留能力，特别适合于对稳定性要求较高的中长期任务。
+在高度调节机制上，超压气球可采用多种方式：
+其一是通过调节气体密度（如加压或释放少量压缩气体）微调浮力；
+其二是通过压舱物释放改变总质量，实现高度微调；
+其三则包括外部加热或冷却装置对内部气体进行热力学调控，以精细调节浮力状态。
+相比其他气球类型，SPB更适合应用于定点驻留、通信中继等对高度稳定性要求极高的场景。</p>
+</section>
+</section>
+<section id="id2">
+<h2>高度调节控制器<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>在传统控制架构中，气球的高度控制多基于动力学建模与反馈调节算法，主要包括：</p>
+<ul>
+<li><p>PID控制器</p>
+<p>最常见的线性控制器，结构简单，适用于低速变化场景。
+由于系统时延较大，调节速率和精度有限，常用于简单高度保持任务。</p>
+</li>
+<li><p>基于模型的预测控制（Model Predictive Control）</p>
+<p>基于热力学模型与风场预报构建控制优化问题，具有多步预测能力，适用于多变量耦合系统，在高度调整精度和能源优化方面表现出色。</p>
+</li>
+<li><p>规则逻辑控制（Rule-Based Control）</p>
+<p>常用于早期系统中，通过设定阈值、上下限规则，实现条件触发式抛投压舱物或排气控制，易于实现但缺乏自适应性。</p>
+</li>
+<li><p>增益调度控制器（Gain Scheduling）</p>
+<p>结合不同飞行阶段的系统响应特性动态调整控制器参数，可提高适应性但对模型依赖较强。</p>
+</li>
+</ul>
+<p>这些控制方法大多建立在准确建模与参数调谐基础之上，对模型误差和外部扰动较为敏感，难以应对环境不确定性和突发性干扰。
+为弥补这一不足，近年来逐渐涌现出融合机器学习、强化学习等方法的智能控制策略。下面将分别详细介绍传统高度控制和智能高度控制器：</p>
+<section id="id3">
+<h3>传统高度控制器<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>通常来说，完整的放飞流程图如下图所示，可以分为以下几个阶段：快速上升阶段、高度调控阶段(默认目标高度和指令高度)、被动平飘阶段，这三个阶段分别对应不同的目的和控制策略</p>
+<img alt="_images/Flight_overall.png" src="_images/Flight_overall.png" />
+<ol class="arabic simple">
+<li><p>快速上升阶段通常不需要控制器介入，该阶段的主要目的是让气球尽快升空，到达临近的目标高度。为了防止气球上升速度异常而导致超过目标高度，造成资源浪费；
+或者由于气象原因导致的温度骤降使得无法正常上升，因此该阶段对于速度和距离目标高度有所限制，这两个数值由排气机构的性能所决定，
+下图为不同速度下，不同距离的高度控制可行域分析图，横轴及纵轴代表开启排气阀门的高度和速度，其中色块表示高度控制的可行性。</p></li>
+</ol>
+<ol class="arabic simple" start="2">
+<li><p>高度调控阶段即当气球需要通过控制器的介入来到达指定的目标高度，或者是源于地面站的指令高度。
+此阶段的输入量为高度和速度，通过判定两者的状态来确定执行机构的状态，
+受机构限制，排气机构的状态仅有开或关，因此通过设置速度和高度的边界条件，作为排气机构的触发器，控制排气机构的状态。
+抛物机构则能够通过控制电机转速，实现不同的抛物效率，因此抛物机构则通过带有饱和上限的PID控制器，输出抛物机构执行器的功率比，通过逆运算得到抛物电机转速。</p></li>
+<li><p>被动平飘阶段意味着气球已经进入目标高度区间，允许气球在目标高度的容忍区间内震荡，
+由于气球平台的资源是有限的，同时高度数据源于气压值，因此设定合适容忍区间能够避免气球为了维持在特定高度而造成不必要的浪费。
+容忍高度则代表了控制器的激进程度，往往越激进的控制器会使高度控制的响应更快，但驻空时间将大大减少。</p></li>
+</ol>
+<p>乳胶气球系统作为一个复杂的非线性时变多变量系统，其自身的状态量除了上述简化模型的 <span class="math notranslate nohighlight">\(Z\)</span>、<span class="math notranslate nohighlight">\(\dot{Z}\)</span> 外，还包含了大量大气、热力学、风场、球皮形变等环境参数，
+在上一节的能控性证明中，为了简化均将一系列环境参数取为与高度、运行时间相关的索引值。此外为了考虑实际工程的高度可控，第一阶段的主要任务是验证执行机构能够实现可行且主动的高度控制效果。
+因此本文的高度控制算法架构(如下图所示),通过人为制定策略，以基于任务触发的方式，实现高度控制问题。</p>
+</section>
+<section id="id4">
+<h3>智能高度控制器<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>高空气球的纵向运动行为受热力学过程的响应延迟、环境气压波动以及浮力调节中的非线性因素影响显著，
+传统控制器（如PID控制器或模型预测控制器MPC）在面对动态工况和外部扰动时，往往难以保证控制精度与响应速度。
+为提升系统的自适应能力和对非线性复杂系统的建模能力，研究者逐步引入深度学习方法，构建神经网络驱动的高度控制器，主要包括以下两类策略：
+一类是基于神经网络的动态建模器。
+该方法通过学习历史飞行数据中的状态演化规律，构建从控制输入到系统状态响应的非线性映射模型，从而用于替代或增强传统控制器中的动力学模型。
+与经典的解析建模方式相比，神经网络建模器在处理高度调节过程中的延迟、非线性和不确定扰动方面具有更好的适应性，有助于提升系统预测精度与控制鲁棒性。
+另一类是神经网络控制策略网络，
+即直接以环境状态（如高度、垂直速度、温度、气压、风速等）作为输入，输出对应的控制动作（例如压舱物释放指令或气囊排气开度）。
+该策略通常通过监督学习或模仿学习进行训练，在逼近传统控制规律的同时，具备更强的泛化能力，能够在复杂或未知环境中实现快速响应与高精度控制。</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="atmos_tool.html" class="btn btn-neutral float-left" title="Atmospheric Tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="trajectory_planning.html" class="btn btn-neutral float-right" title="Planning and Optimization" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2025, LittledT。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
